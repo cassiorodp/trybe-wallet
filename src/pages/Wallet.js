@@ -17,7 +17,6 @@ class Wallet extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleExpenses = this.handleExpenses.bind(this);
     this.totalExpenses = this.totalExpenses.bind(this);
-    this.checkInputs = this.checkInputs.bind(this);
   }
 
   componentDidMount() {
