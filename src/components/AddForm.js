@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { addSpent, getCoins } from '../actions';
-import WalletInput from '../components/WalletInput';
-import WalletSelect from '../components/WalletSelect';
-import WalletTable from '../components/WalletTable';
-import AddForm from '../components/AddForm';
+import { addSpent } from '../actions';
+import WalletInputs from './WalletInput';
+import WalletSelect from './WalletSelect';
 
-class Wallet extends React.Component {
+class AddForm extends Component {
   constructor(props) {
     super(props);
 
@@ -22,26 +19,9 @@ class Wallet extends React.Component {
       addButton: true,
     };
 
-    this.renderHeader = this.renderHeader.bind(this);
-    this.renderForms = this.renderForms.bind(this);
-    this.getCoinsOptions = this.getCoinsOptions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleExpenses = this.handleExpenses.bind(this);
-    this.totalExpenses = this.totalExpenses.bind(this);
     this.checkInputs = this.checkInputs.bind(this);
-  }
-
-  componentDidMount() {
-    this.getCoinsOptions();
-  }
-
-  componentDidUpdate() {
-    this.totalExpenses();
-  }
-
-  getCoinsOptions() {
-    const { fetchCoins } = this.props;
-    fetchCoins();
   }
 
   handleExpenses() {
@@ -60,12 +40,6 @@ class Wallet extends React.Component {
     this.setState({ expenses: inicialState });
   }
 
-  checkInputs() {
-    const { expenses: { value, description } } = this.state;
-    return value && description
-      ? this.setState({ addButton: false }) : this.setState({ addButton: true });
-  }
-
   handleChange({ target }) {
     const { expenses } = this.state;
     const { id, value } = target;
@@ -76,50 +50,24 @@ class Wallet extends React.Component {
     this.checkInputs();
   }
 
-  totalExpenses() {
-    const { expenses } = this.props;
-    return expenses.reduce((itemAcc, item) => {
-      const convertedValue = item.exchangeRates[item.currency].ask;
-      itemAcc += item.value * convertedValue;
-      return itemAcc;
-    }, 0).toFixed(2);
+  checkInputs() {
+    const { expenses: { value, description } } = this.state;
+    return value && description
+      ? this.setState({ addButton: false }) : this.setState({ addButton: true });
   }
 
-  renderHeader() {
-    const { email } = this.props;
-    return (
-      <header>
-        <span
-          data-testid="email-field"
-        >
-          {email}
-        </span>
-        <span
-          data-testid="total-field"
-        >
-          {`Despesa Total: ${this.totalExpenses()}`}
-        </span>
-        <span
-          data-testid="header-currency-field"
-        >
-          BRL
-        </span>
-      </header>
-    );
-  }
-
-  renderForms() {
+  render() {
     const { currencies } = this.props;
-    const { expenses } = this.state;
+    const { expenses, addButton } = this.state;
     return (
       <form>
-        <WalletInput
+        <WalletInputs
           value={ expenses.value }
           labelText="Valor:"
           id="value"
           onChange={ this.handleChange }
         />
-        <WalletInput
+        <WalletInputs
           value={ expenses.description }
           labelText="Descrição:"
           id="description"
@@ -154,45 +102,24 @@ class Wallet extends React.Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
+        <button
+          onClick={ this.handleExpenses }
+          type="button"
+          disabled={ addButton }
+        >
+          Adicionar despesa
+        </button>
       </form>
     );
   }
-
-  render() {
-    const { addButton } = this.state;
-    return (
-      <>
-        {this.renderHeader()}
-        <div>
-          {/* {this.renderForms()}
-          <button
-            onClick={ this.handleExpenses }
-            type="button"
-            disabled={ addButton }
-          >
-            Adicionar despesa
-          </button> */}
-          <AddForm />
-        </div>
-        <WalletTable />
-      </>);
-  }
 }
 
-const mapStateToProps = ({ user, wallet }) => ({
-  email: user.email,
+const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
-  expenses: wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCoins: () => dispatch(getCoins()),
   dispatchSpent: (payload) => dispatch(addSpent(payload)),
 });
 
-Wallet.propTypes = {
-  email: PropTypes.string,
-  fetchCoins: PropTypes.func,
-}.isRequired;
-
-export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
