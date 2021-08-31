@@ -4,17 +4,6 @@ import PropTypes from 'prop-types';
 import { deleteRow, editItem } from '../actions';
 
 class WalletTable extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleDelete = this.handleDelete.bind(this);
-  }
-
-  handleDelete(itemId) {
-    const { deleteExpenses } = this.props;
-    deleteExpenses(itemId);
-  }
-
   renderTableHead() {
     return (
       <thead>
@@ -34,7 +23,7 @@ class WalletTable extends Component {
   }
 
   render() {
-    const { expenses, editExpenses } = this.props;
+    const { expenses, editExpenses, deleteExpenses } = this.props;
     return (
       <table>
         {this.renderTableHead()}
@@ -63,7 +52,7 @@ class WalletTable extends Component {
                   Editar
                 </button>
                 <button
-                  onClick={ () => this.handleDelete(item.id) }
+                  onClick={ () => deleteExpenses(item.id) }
                   data-testid="delete-btn"
                   type="button"
                 >
