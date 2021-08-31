@@ -1,0 +1,27 @@
+.main-container {
+  align-items: center;
+  border: 0.5px solid #40916c;
+  border-radius: 10px;
+  box-shadow: #40916c 0px 7px 29px 0px;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 15vh auto;
+  width: 50vw;
+}
+
+.title {
+  color: #40916c;
+}
+
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.btn-success {
+  margin: 5px 0;
+}
+
+.btn-success:hover {
+  cursor: pointer;
+}

@@ -79,6 +79,7 @@ class EditForm extends Component {
             onChange={ this.handleChange }
             aria-label="método de pagamento"
             id="method"
+            value={expenses.method}
           >
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
@@ -87,7 +88,12 @@ class EditForm extends Component {
         </label>
         <label htmlFor="tag">
           Tag:
-          <select onChange={ this.handleChange } name="tag" id="tag">
+          <select
+            value={expenses.tag}
+            onChange={ this.handleChange }
+            name="tag"
+            id="tag"
+          >
             <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
             <option value="Trabalho">Trabalho</option>

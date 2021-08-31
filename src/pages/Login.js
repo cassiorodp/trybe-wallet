@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import bitcoinGif from '../images/bitcoin.gif';
 import { getUserEmail } from '../actions';
+import '../styles/login.css';
 
 class Login extends React.Component {
   constructor(props) {
@@ -62,9 +63,10 @@ class Login extends React.Component {
     const { email, password } = this.state;
     return (
       <>
-        <label htmlFor="email">
+        <label htmlFor="email" className="form-label">
           Email:
           <input
+            className="form-control"
             data-testid="email-input"
             value={ email }
             id="email"
@@ -72,9 +74,10 @@ class Login extends React.Component {
             onChange={ this.handleChange }
           />
         </label>
-        <label htmlFor="password">
+        <label htmlFor="password" className="form-label">
           Senha:
           <input
+            className="form-control"
             data-testid="password-input"
             value={ password }
             id="password"
@@ -88,12 +91,13 @@ class Login extends React.Component {
   render() {
     const { buttonDisable } = this.state;
     return (
-      <>
-        <h1>Trybe Wallet</h1>
+      <main className="main-container">
+        <h1 className="title">Trybe Wallet</h1>
         <img src={ bitcoinGif } alt="bitcoin gif" />
-        <form>
+        <form className="form-container">
           {this.renderInputs()}
           <button
+            className="btn btn-success"
             disabled={ buttonDisable }
             type="button"
             onClick={ this.changePage }
@@ -102,7 +106,7 @@ class Login extends React.Component {
 
           </button>
         </form>
-      </>
+      </main>
     );
   }
 }
