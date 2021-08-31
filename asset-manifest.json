@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/trybe-wallet/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/trybe-wallet/static/js/main.5610cb1a.chunk.js",
-    "main.js.map": "/trybe-wallet/static/js/main.5610cb1a.chunk.js.map",
+    "main.css": "/trybe-wallet/static/css/main.95bf9c2d.chunk.css",
+    "main.js": "/trybe-wallet/static/js/main.8a3c5d92.chunk.js",
+    "main.js.map": "/trybe-wallet/static/js/main.8a3c5d92.chunk.js.map",
     "runtime-main.js": "/trybe-wallet/static/js/runtime-main.ba48076f.js",
     "runtime-main.js.map": "/trybe-wallet/static/js/runtime-main.ba48076f.js.map",
-    "static/js/2.221e1bbc.chunk.js": "/trybe-wallet/static/js/2.221e1bbc.chunk.js",
-    "static/js/2.221e1bbc.chunk.js.map": "/trybe-wallet/static/js/2.221e1bbc.chunk.js.map",
+    "static/js/2.18cc8c19.chunk.js": "/trybe-wallet/static/js/2.18cc8c19.chunk.js",
+    "static/js/2.18cc8c19.chunk.js.map": "/trybe-wallet/static/js/2.18cc8c19.chunk.js.map",
     "index.html": "/trybe-wallet/index.html",
-    "precache-manifest.c3f0222ce662fb3876256bb005a1d0db.js": "/trybe-wallet/precache-manifest.c3f0222ce662fb3876256bb005a1d0db.js",
+    "precache-manifest.515f669eeea5fd7e53739985a7ebb43b.js": "/trybe-wallet/precache-manifest.515f669eeea5fd7e53739985a7ebb43b.js",
     "service-worker.js": "/trybe-wallet/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/trybe-wallet/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.221e1bbc.chunk.js.LICENSE.txt": "/trybe-wallet/static/js/2.221e1bbc.chunk.js.LICENSE.txt",
+    "static/css/main.95bf9c2d.chunk.css.map": "/trybe-wallet/static/css/main.95bf9c2d.chunk.css.map",
+    "static/js/2.18cc8c19.chunk.js.LICENSE.txt": "/trybe-wallet/static/js/2.18cc8c19.chunk.js.LICENSE.txt",
     "static/media/bitcoin.gif": "/trybe-wallet/static/media/bitcoin.1a3bd732.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.ba48076f.js",
-    "static/js/2.221e1bbc.chunk.js",
-    "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.5610cb1a.chunk.js"
+    "static/js/2.18cc8c19.chunk.js",
+    "static/css/main.95bf9c2d.chunk.css",
+    "static/js/main.8a3c5d92.chunk.js"
   ]
 }
