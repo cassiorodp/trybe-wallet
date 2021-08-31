@@ -107,7 +107,7 @@ class EditForm extends Component {
             </select>
           </label>
           <button
-            className="btn btn-success"
+            className="btn btn-warning"
             onClick={ this.handleEdit }
             type="button"
             disabled={ addButton }
