@@ -5,9 +5,15 @@ class WalletInputs extends Component {
   render() {
     const { labelText, id, onChange, value } = this.props;
     return (
-      <label htmlFor={ id }>
+      <label htmlFor={ id } className="form-label">
         {labelText}
-        <input value={ value } onChange={ onChange } id={ id } type="text" />
+        <input
+          className="form-control"
+          value={ value }
+          onChange={ onChange }
+          id={ id }
+          type="text"
+        />
       </label>
     );
   }

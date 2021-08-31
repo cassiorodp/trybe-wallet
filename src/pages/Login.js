@@ -92,7 +92,7 @@ class Login extends React.Component {
     const { buttonDisable } = this.state;
     return (
       <main className="main-container">
-        <h1 className="title">Trybe Wallet</h1>
+        <h1 className="title">Virtual Wallet</h1>
         <img src={ bitcoinGif } alt="bitcoin gif" />
         <form className="form-container">
           {this.renderInputs()}

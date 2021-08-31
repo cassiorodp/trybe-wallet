@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addSpent } from '../actions';
 import WalletInputs from './WalletInput';
 import WalletSelect from './WalletSelect';
+import '../styles/addForm.css'
 
 class AddForm extends Component {
   constructor(props) {
@@ -60,7 +61,7 @@ class AddForm extends Component {
     const { currencies } = this.props;
     const { expenses, addButton } = this.state;
     return (
-      <form>
+      <form className='add-form-container'>
         <WalletInputs
           value={ expenses.value }
           labelText="Valor:"
@@ -80,9 +81,10 @@ class AddForm extends Component {
           onChange={ this.handleChange }
           currencies={ currencies }
         />
-        <label htmlFor="method">
+        <label htmlFor="method" className='form-label'>
           Método de pagamento:
           <select
+            className='form-select'
             onChange={ this.handleChange }
             aria-label="método de pagamento"
             id="method"
@@ -92,9 +94,14 @@ class AddForm extends Component {
             <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
-        <label htmlFor="tag">
+        <label htmlFor="tag" className='form-label'>
           Tag:
-          <select onChange={ this.handleChange } name="tag" id="tag">
+          <select
+            className='form-select'
+            onChange={ this.handleChange }
+            name="tag"
+            id="tag"
+          >
             <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
             <option value="Trabalho">Trabalho</option>
@@ -103,6 +110,7 @@ class AddForm extends Component {
           </select>
         </label>
         <button
+          className="btn btn-success"
           onClick={ this.handleExpenses }
           type="button"
           disabled={ addButton }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { replaceItem } from '../actions';
 import WalletInputs from './WalletInput';
 import WalletSelect from './WalletSelect';
+import '../styles/editForm.css'
 
 class EditForm extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class EditForm extends Component {
 
     this.state = {
       expenses: {
+        id: selectedItem.id,
         value: selectedItem.value,
         description: selectedItem.description,
         currency: selectedItem.currency,
@@ -53,61 +55,65 @@ class EditForm extends Component {
     const { currencies } = this.props;
     const { expenses, addButton } = this.state;
     return (
-      <form>
-        <WalletInputs
-          value={ expenses.value }
-          labelText="Valor:"
-          id="value"
-          onChange={ this.handleChange }
-        />
-        <WalletInputs
-          value={ expenses.description }
-          labelText="Descrição:"
-          id="description"
-          onChange={ this.handleChange }
-        />
-        <WalletSelect
-          labelText="Moeda:"
-          id="currency"
-          ariaLabel="moeda"
-          onChange={ this.handleChange }
-          currencies={ currencies }
-        />
-        <label htmlFor="method">
-          Método de pagamento:
-          <select
+      <form className='edit-form-container'>
+          <WalletInputs
+            value={ expenses.value }
+            labelText="Valor:"
+            id="value"
             onChange={ this.handleChange }
-            aria-label="método de pagamento"
-            id="method"
-            value={expenses.method}
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
-        </label>
-        <label htmlFor="tag">
-          Tag:
-          <select
-            value={expenses.tag}
+          />
+          <WalletInputs
+            value={ expenses.description }
+            labelText="Descrição:"
+            id="description"
             onChange={ this.handleChange }
-            name="tag"
-            id="tag"
+          />
+          <WalletSelect
+            labelText="Moeda:"
+            id="currency"
+            ariaLabel="moeda"
+            onChange={ this.handleChange }
+            currencies={ currencies }
+            value={expenses.currency}
+          />
+          <label htmlFor="method" className="form-label">
+            Método de pagamento:
+            <select
+              className="form-control"
+              onChange={ this.handleChange }
+              aria-label="método de pagamento"
+              id="method"
+              value={expenses.method}
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </label>
+          <label htmlFor="tag" className='form-label'>
+            Tag:
+            <select
+              className="form-select"
+              value={expenses.tag}
+              onChange={ this.handleChange }
+              name="tag"
+              id="tag"
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </label>
+          <button
+            className="btn btn-success"
+            onClick={ this.handleEdit }
+            type="button"
+            disabled={ addButton }
           >
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
-        </label>
-        <button
-          onClick={ this.handleEdit }
-          type="button"
-          disabled={ addButton }
-        >
-          Editar despesa
-        </button>
+            Editar despesa
+          </button>
       </form>
     );
   }

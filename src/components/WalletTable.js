@@ -7,7 +7,7 @@ import '../styles/walletTable.css';
 class WalletTable extends Component {
   renderTableHead() {
     return (
-      <thead>
+      <thead className="table-head">
         <tr>
           <th>Descrição</th>
           <th>Tag</th>
@@ -26,7 +26,7 @@ class WalletTable extends Component {
   render() {
     const { expenses, editExpenses, deleteExpenses } = this.props;
     return (
-      <table>
+      <table className="table-container">
         {this.renderTableHead()}
         <tbody>
           {expenses.map((item) => (
@@ -49,7 +49,7 @@ class WalletTable extends Component {
                 <button
                   onClick={ () => editExpenses(item.id) }
                   type="button"
-                  className="edit-button"
+                  className="btn btn-warning edit-button"
                 >
                   <i className="fas fa-edit" />
                 </button>
@@ -57,7 +57,7 @@ class WalletTable extends Component {
                   onClick={ () => deleteExpenses(item.id) }
                   data-testid="delete-btn"
                   type="button"
-                  className="delete-button"
+                  className="btn btn-danger delete-button"
                 >
                   <i className="fas fa-trash" />
                 </button>

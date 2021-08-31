@@ -5,6 +5,8 @@ import { addSpent, getCoins } from '../actions';
 import WalletTable from '../components/WalletTable';
 import AddForm from '../components/AddForm';
 import EditForm from '../components/EditForm';
+import '../styles/wallet.css';
+import bitcoinImage from '../images/bitcoin.gif';
 
 class Wallet extends React.Component {
   constructor(props) {
@@ -68,22 +70,25 @@ class Wallet extends React.Component {
   renderHeader() {
     const { email } = this.props;
     return (
-      <header>
+      <header className="header-container">
+        <img src={ bitcoinImage } alt="bitcoin gif" />
         <span
           data-testid="email-field"
         >
           {email}
         </span>
-        <span
-          data-testid="total-field"
-        >
-          {`Despesa Total: ${this.totalExpenses()}`}
-        </span>
-        <span
-          data-testid="header-currency-field"
-        >
-          BRL
-        </span>
+        <div>
+          <span
+            data-testid="total-field"
+          >
+            {`Despesa Total: ${this.totalExpenses()}`}
+          </span>
+          <span
+            data-testid="header-currency-field"
+          >
+            BRL
+          </span>
+        </div>
       </header>
     );
   }

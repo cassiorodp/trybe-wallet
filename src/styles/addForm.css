@@ -1,0 +1,9 @@
+.add-form-container {
+  align-items: center;
+  background-color: #264653;
+  border-radius: 10px;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-around;
+  margin: 10px;
+}
