@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/virtual-wallet/precache-manifest.c334c8b88d200ecd248f6c4563465d9b.js"
+  "/virtual-wallet/precache-manifest.696e09d0557737e4244d7d78359d3cce.js"
 );
 
 self.addEventListener('message', (event) => {
