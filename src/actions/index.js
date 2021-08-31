@@ -9,6 +9,7 @@ export const COINS_FAIL = 'COINS_FAIL';
 export const SPENT_SUCCESS = 'SPENT_SUCCESS';
 
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const EDIT_ITEM = 'EDIT_ITEM';
 
 export const getUserEmail = (payload) => ({
   type: GET_USER_EMAIL,
@@ -66,3 +67,7 @@ export const addSpent = (payload) => async (dispatch) => {
     dispatch(coinsFail(error));
   }
 };
+
+export const editItem = () => ({
+  type: EDIT_ITEM,
+});

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteRow } from '../actions';
+import { deleteRow, editItem } from '../actions';
 
 class WalletTable extends Component {
   constructor(props) {
@@ -11,8 +11,8 @@ class WalletTable extends Component {
   }
 
   handleDelete(itemId) {
-    const { deleteSpent } = this.props;
-    deleteSpent(itemId);
+    const { deleteExpenses } = this.props;
+    deleteExpenses(itemId);
   }
 
   renderTableHead() {
@@ -34,7 +34,7 @@ class WalletTable extends Component {
   }
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, editExpenses } = this.props;
     return (
       <table>
         {this.renderTableHead()}
@@ -56,6 +56,12 @@ class WalletTable extends Component {
               </td>
               <td>{item.exchangeRates[item.currency].name.split('/')[1]}</td>
               <td>
+                <button
+                  onClick={ () => editExpenses() }
+                  type="button"
+                >
+                  Editar
+                </button>
                 <button
                   onClick={ () => this.handleDelete(item.id) }
                   data-testid="delete-btn"
@@ -81,7 +87,8 @@ const mapStateToProps = ({ wallet }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteSpent: (payload) => dispatch(deleteRow(payload)),
+  editExpenses: () => dispatch(editItem()),
+  deleteExpenses: (payload) => dispatch(deleteRow(payload)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletTable);

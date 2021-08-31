@@ -3,11 +3,13 @@ import {
   COINS_SUCCESS,
   COINS_FAIL,
   SPENT_SUCCESS,
-  DELETE_ITEM } from '../actions';
+  DELETE_ITEM,
+  EDIT_ITEM } from '../actions';
 
 const INICIAL_STATE = {
   currencies: [],
   expenses: [],
+  editItem: false,
 };
 
 const wallet = (state = INICIAL_STATE, action) => {
@@ -39,6 +41,11 @@ const wallet = (state = INICIAL_STATE, action) => {
     return {
       ...state,
       expenses: state.expenses.filter(({ id }) => id !== action.itemId),
+    };
+  case EDIT_ITEM:
+    return {
+      ...state,
+      editItem: !state.editItem,
     };
   default:
     return state;
