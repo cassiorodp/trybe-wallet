@@ -11,17 +11,6 @@ class Wallet extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      expenses: {
-        value: '',
-        description: '',
-        currency: 'USD',
-        method: 'dinheiro',
-        tag: 'Alimentação',
-      },
-      addButton: true,
-    };
-
     this.renderHeader = this.renderHeader.bind(this);
     this.renderForms = this.renderForms.bind(this);
     this.getCoinsOptions = this.getCoinsOptions.bind(this);
@@ -58,12 +47,6 @@ class Wallet extends React.Component {
 
     dispatchSpent(expenses);
     this.setState({ expenses: inicialState });
-  }
-
-  checkInputs() {
-    const { expenses: { value, description } } = this.state;
-    return value && description
-      ? this.setState({ addButton: false }) : this.setState({ addButton: true });
   }
 
   handleChange({ target }) {
@@ -159,7 +142,6 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { addButton } = this.state;
     return (
       <>
         {this.renderHeader()}

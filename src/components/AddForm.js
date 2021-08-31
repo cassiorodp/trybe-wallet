@@ -13,7 +13,7 @@ class AddForm extends Component {
         value: '',
         description: '',
         currency: 'USD',
-        method: 'dinheiro',
+        method: 'Dinheiro',
         tag: 'Alimentação',
       },
       addButton: true,
