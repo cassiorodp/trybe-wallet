@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e762c584f62213546d4c87dda625622c",
+    "revision": "e8fe02164af3bd04aa0770bc54d805cd",
     "url": "/virtual-wallet/index.html"
   },
   {
-    "revision": "9b92a2b2c59a3ae69265",
-    "url": "/virtual-wallet/static/css/main.89782f79.chunk.css"
+    "revision": "fa401f7f77f055c3a5c6",
+    "url": "/virtual-wallet/static/css/main.a04b1ba2.chunk.css"
   },
   {
     "revision": "42e32f530ec8b0776112",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/virtual-wallet/static/js/2.5fb25298.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9b92a2b2c59a3ae69265",
-    "url": "/virtual-wallet/static/js/main.af012936.chunk.js"
+    "revision": "fa401f7f77f055c3a5c6",
+    "url": "/virtual-wallet/static/js/main.f924acc2.chunk.js"
   },
   {
     "revision": "226098dc09fc7f94bdb3",
