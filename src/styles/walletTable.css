@@ -1,0 +1,9 @@
+.edit-button, .delete-button {
+  height: 40px;
+  width: 40px;
+}
+
+.edit-button:hover, .delete-button:hover {
+  cursor: pointer;
+  background-color: rgb(105, 105, 105);
+}

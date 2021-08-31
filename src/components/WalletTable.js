@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteRow, editItem } from '../actions';
+import '../styles/walletTable.css';
 
 class WalletTable extends Component {
   renderTableHead() {
@@ -46,17 +47,19 @@ class WalletTable extends Component {
               <td>{item.exchangeRates[item.currency].name.split('/')[1]}</td>
               <td>
                 <button
-                  onClick={ () => editExpenses() }
+                  onClick={ () => editExpenses(item.id) }
                   type="button"
+                  className="edit-button"
                 >
-                  Editar
+                  <i className="fas fa-edit" />
                 </button>
                 <button
                   onClick={ () => deleteExpenses(item.id) }
                   data-testid="delete-btn"
                   type="button"
+                  className="delete-button"
                 >
-                  Apagar
+                  <i className="fas fa-trash" />
                 </button>
               </td>
             </tr>
@@ -76,7 +79,7 @@ const mapStateToProps = ({ wallet }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  editExpenses: () => dispatch(editItem()),
+  editExpenses: (payload) => dispatch(editItem(payload)),
   deleteExpenses: (payload) => dispatch(deleteRow(payload)),
 });
 

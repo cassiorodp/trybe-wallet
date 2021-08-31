@@ -4,7 +4,8 @@ import {
   COINS_FAIL,
   SPENT_SUCCESS,
   DELETE_ITEM,
-  EDIT_ITEM } from '../actions';
+  EDIT_ITEM,
+  REPLACE_ITEM } from '../actions';
 
 const INICIAL_STATE = {
   currencies: [],
@@ -45,7 +46,15 @@ const wallet = (state = INICIAL_STATE, action) => {
   case EDIT_ITEM:
     return {
       ...state,
-      editItem: !state.editItem,
+      selectedItem: state.expenses.find(({ id }) => id === action.selectedItem),
+      editItem: action.editItem,
+    };
+  case REPLACE_ITEM:
+    return {
+      ...state,
+      expenses: state.expenses
+        .map((item) => (item.id === action.itemId ? action.updatedItem : item)),
+      editItem: false,
     };
   default:
     return state;

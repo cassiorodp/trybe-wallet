@@ -1,43 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addSpent } from '../actions';
+import { replaceItem } from '../actions';
 import WalletInputs from './WalletInput';
 import WalletSelect from './WalletSelect';
 
-class AddForm extends Component {
+class EditForm extends Component {
   constructor(props) {
     super(props);
+    const {selectedItem} = this.props
 
     this.state = {
       expenses: {
-        value: '',
-        description: '',
-        currency: 'USD',
-        method: 'Dinheiro',
-        tag: 'Alimentação',
+        value: selectedItem.value,
+        description: selectedItem.description,
+        currency: selectedItem.currency,
+        method: selectedItem.method,
+        tag: selectedItem.tag,
+        exchangeRates: selectedItem.exchangeRates,
       },
       addButton: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleExpenses = this.handleExpenses.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
     this.checkInputs = this.checkInputs.bind(this);
   }
 
-  handleExpenses() {
-    const { dispatchSpent } = this.props;
+  handleEdit() {
+    const { dispatchEdit, selectedItem } = this.props;
     const { expenses } = this.state;
 
-    const inicialState = {
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: 'Alimentação',
-    };
-
-    dispatchSpent(expenses);
-    this.setState({ expenses: inicialState });
+    dispatchEdit(selectedItem.id, expenses);
   }
 
   handleChange({ target }) {
@@ -103,11 +96,11 @@ class AddForm extends Component {
           </select>
         </label>
         <button
-          onClick={ this.handleExpenses }
+          onClick={ this.handleEdit }
           type="button"
           disabled={ addButton }
         >
-          Adicionar despesa
+          Editar despesa
         </button>
       </form>
     );
@@ -116,10 +109,11 @@ class AddForm extends Component {
 
 const mapStateToProps = ({ wallet }) => ({
   currencies: wallet.currencies,
+  selectedItem: wallet.selectedItem,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchSpent: (payload) => dispatch(addSpent(payload)),
+  dispatchEdit: (...payload) => dispatch(replaceItem(...payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EditForm);

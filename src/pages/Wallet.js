@@ -2,17 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addSpent, getCoins } from '../actions';
-import WalletInput from '../components/WalletInput';
-import WalletSelect from '../components/WalletSelect';
 import WalletTable from '../components/WalletTable';
 import AddForm from '../components/AddForm';
+import EditForm from '../components/EditForm';
 
 class Wallet extends React.Component {
   constructor(props) {
     super(props);
 
     this.renderHeader = this.renderHeader.bind(this);
-    this.renderForms = this.renderForms.bind(this);
     this.getCoinsOptions = this.getCoinsOptions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleExpenses = this.handleExpenses.bind(this);
@@ -90,71 +88,12 @@ class Wallet extends React.Component {
     );
   }
 
-  renderForms() {
-    const { currencies } = this.props;
-    const { expenses } = this.state;
-    return (
-      <form>
-        <WalletInput
-          value={ expenses.value }
-          labelText="Valor:"
-          id="value"
-          onChange={ this.handleChange }
-        />
-        <WalletInput
-          value={ expenses.description }
-          labelText="Descrição:"
-          id="description"
-          onChange={ this.handleChange }
-        />
-        <WalletSelect
-          labelText="Moeda:"
-          id="currency"
-          ariaLabel="moeda"
-          onChange={ this.handleChange }
-          currencies={ currencies }
-        />
-        <label htmlFor="method">
-          Método de pagamento:
-          <select
-            onChange={ this.handleChange }
-            aria-label="método de pagamento"
-            id="method"
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
-        </label>
-        <label htmlFor="tag">
-          Tag:
-          <select onChange={ this.handleChange } name="tag" id="tag">
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
-        </label>
-      </form>
-    );
-  }
-
   render() {
+    const { editItem } = this.props;
     return (
       <>
         {this.renderHeader()}
-        <div>
-          {/* {this.renderForms()}
-          <button
-            onClick={ this.handleExpenses }
-            type="button"
-            disabled={ addButton }
-          >
-            Adicionar despesa
-          </button> */}
-          <AddForm />
-        </div>
+        {editItem ? <EditForm /> : <AddForm />}
         <WalletTable />
       </>);
   }
@@ -164,6 +103,7 @@ const mapStateToProps = ({ user, wallet }) => ({
   email: user.email,
   currencies: wallet.currencies,
   expenses: wallet.expenses,
+  editItem: wallet.editItem,
 });
 
 const mapDispatchToProps = (dispatch) => ({
